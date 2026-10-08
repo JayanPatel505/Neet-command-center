@@ -2008,7 +2008,7 @@ select:focus-visible {
         font-size: 9px;
 
     }
-
+i
 
     .hero-card h2 {
 
@@ -2025,4 +2025,60 @@ select:focus-visible {
 
     }
 
+}/* =========================================================
+   PERSONAL JOURNEY FOOTER
+========================================================= */
+
+.personal-footer {
+    text-align: center;
+    padding: 42px 20px 34px;
+    margin-top: 28px;
+    opacity: 0.9;
+}
+
+.personal-line {
+    width: 55px;
+    height: 1px;
+    background: rgba(38, 53, 45, 0.18);
+    margin: 0 auto 26px;
+}
+
+.personal-kicker {
+    margin: 0 0 18px;
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-transform: lowercase;
+    color: #8a8f86;
+}
+
+.personal-photo {
+    width: 92px;
+    height: 92px;
+    object-fit: cover;
+    border-radius: 50%;
+    display: block;
+    margin: 0 auto 14px;
+    filter: grayscale(100%);
+    box-shadow: 0 6px 18px rgba(38, 53, 45, 0.10);
+}
+
+.personal-name {
+    margin: 0;
+    font-size: 15px;
+    font-weight: 600;
+    color: #26352d;
+}
+
+.personal-note {
+    margin: 7px 0 0;
+    font-size: 12px;
+    line-height: 1.6;
+    color: #8a8f86;
+}
+
+.personal-goal {
+    margin: 12px 0 0;
+    font-size: 9px;
+    letter-spacing: 2px;
+    color: #a1a59e;
 }
