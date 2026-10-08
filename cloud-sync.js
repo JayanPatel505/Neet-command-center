@@ -1,95 +1,142 @@
 /* =========================================================
-   NEET COMMAND CENTER — CLOUD SYNC
-   Read-only sharing system
+   NEET COMMAND CENTER — LIVE PROGRESS SHARING
 ========================================================= */
 
-const NEET_CLOUD_VERSION = 1;
+const NEET_SHARE_KEY = "neet_share_id";
 
-/*
-   Creates a clean copy of the progress data.
 
-   We intentionally don't upload things like:
-   - Firebase login details
-   - private account information
-   - browser/localStorage internals
-*/
+/* =========================================================
+   CREATE PUBLIC COPY
+========================================================= */
+
 function createPublicProgress(data) {
 
     if (!data || typeof data !== "object") {
         return null;
     }
 
+    /*
+       Your actual appData structure is:
+
+       journeyStartDate
+       neetDate
+       tasks
+       days
+       totalStudySeconds
+       bestStreak
+       timer
+    */
+
     return {
-        version: NEET_CLOUD_VERSION,
+        version: 1,
 
         updatedAt: Date.now(),
 
-        journeyDay: data.journeyDay ?? 0,
+        journeyStartDate:
+            data.journeyStartDate || null,
 
-        streak: data.streak ?? 0,
+        neetDate:
+            data.neetDate || null,
 
-        bestStreak: data.bestStreak ?? 0,
+        tasks:
+            Array.isArray(data.tasks)
+                ? data.tasks
+                : [],
 
-        studiedToday: data.studiedToday ?? 0,
+        days:
+            data.days || {},
 
-        totalStudyTime: data.totalStudyTime ?? 0,
+        totalStudySeconds:
+            Number(data.totalStudySeconds) || 0,
 
-        totalTasks: data.totalTasks ?? 0,
-
-        totalQuestions: data.totalQuestions ?? 0,
-
-        tasks: data.tasks ?? [],
-
-        sessions: data.sessions ?? [],
-
-        history: data.history ?? {},
-
-        subjects: data.subjects ?? {},
-
-        settings: {
-            neetDate: data.settings?.neetDate ?? null
-        }
+        bestStreak:
+            Number(data.bestStreak) || 0
     };
 }
 
 
-/* ---------------------------------------------------------
-   UPLOAD CURRENT PROGRESS
---------------------------------------------------------- */
+/* =========================================================
+   GENERATE SHARE ID
+========================================================= */
 
-async function uploadProgressToCloud(data) {
+function getShareId() {
 
-    if (!cloudAuth || !cloudDatabase) {
-        console.warn("Firebase is not available.");
+    let shareId =
+        localStorage.getItem(
+            NEET_SHARE_KEY
+        );
+
+    if (!shareId) {
+
+        shareId =
+            crypto.randomUUID()
+                .replaceAll("-", "");
+
+        localStorage.setItem(
+            NEET_SHARE_KEY,
+            shareId
+        );
+    }
+
+    return shareId;
+}
+
+
+/* =========================================================
+   UPLOAD PROGRESS
+========================================================= */
+
+async function syncProgressToCloud(data) {
+
+    if (
+        typeof cloudAuth === "undefined" ||
+        typeof cloudDatabase === "undefined"
+    ) {
         return;
     }
 
-    const user = cloudAuth.currentUser;
+    const user =
+        cloudAuth.currentUser;
 
     if (!user) {
-        console.log("Not logged into Firebase.");
         return;
     }
 
-    const publicProgress = createPublicProgress(data);
+    const progress =
+        createPublicProgress(data);
 
-    if (!publicProgress) {
-        console.warn("No progress data to upload.");
+    if (!progress) {
         return;
     }
+
+    const shareId =
+        getShareId();
 
     try {
 
         await cloudDatabase
-            .ref("users/" + user.uid + "/progress")
-            .set(publicProgress);
+            .ref(
+                "shares/" +
+                shareId
+            )
+            .set({
 
-        console.log("☁️ Progress uploaded.");
+                ownerUid:
+                    user.uid,
+
+                progress:
+                    progress
+
+            });
+
+        console.log(
+            "☁️ NEET progress synced."
+        );
 
     } catch (error) {
 
         console.error(
-            "Cloud upload failed:",
+            "☁️ Cloud sync failed:",
             error
         );
 
@@ -97,69 +144,76 @@ async function uploadProgressToCloud(data) {
 }
 
 
-/* ---------------------------------------------------------
-   CREATE / UPDATE SHARE
---------------------------------------------------------- */
+/* =========================================================
+   CREATE SHARE LINK
+========================================================= */
 
-async function createShareLink(data) {
+async function generateShareLink() {
 
-    if (!cloudAuth || !cloudDatabase) {
-        alert("Firebase is not available.");
-        return null;
+    if (
+        typeof cloudAuth === "undefined" ||
+        !cloudAuth.currentUser
+    ) {
+
+        alert(
+            "☁️ Connect your Google account first."
+        );
+
+        return;
+
     }
 
-    const user = cloudAuth.currentUser;
-
-    if (!user) {
-        alert("Connect your Google account first.");
-        return null;
-    }
+    const shareId =
+        getShareId();
 
     try {
 
-        let shareId =
-            localStorage.getItem("neet_share_id");
+        await syncProgressToCloud(
+            appData
+        );
 
-        if (!shareId) {
-
-            shareId =
-                crypto.randomUUID()
-                    .replaceAll("-", "");
-
-            localStorage.setItem(
-                "neet_share_id",
-                shareId
+        const viewerUrl =
+            new URL(
+                "viewer.html",
+                window.location.href
             );
+
+        viewerUrl.searchParams.set(
+            "id",
+            shareId
+        );
+
+        const url =
+            viewerUrl.toString();
+
+        try {
+
+            await navigator.clipboard.writeText(
+                url
+            );
+
+            alert(
+                "🔗 Read-only progress link copied!"
+            );
+
+        } catch {
+
+            prompt(
+                "Copy your read-only progress link:",
+                url
+            );
+
         }
 
-        const publicProgress =
-            createPublicProgress(data);
-
-        await cloudDatabase
-            .ref("shares/" + shareId)
-            .set({
-
-                ownerUid: user.uid,
-
-                progress: publicProgress
-
-            });
-
-        const shareUrl =
-            window.location.origin +
-            window.location.pathname.replace(
-                "index.html",
-                "viewer.html"
-            ) +
-            "?id=" +
-            shareId;
-
-        return shareUrl;
+        console.log(
+            "🔗 Share link:",
+            url
+        );
 
     } catch (error) {
 
         console.error(
-            "Share creation failed:",
+            "Could not create share link:",
             error
         );
 
@@ -167,42 +221,136 @@ async function createShareLink(data) {
             "Couldn't create the share link."
         );
 
-        return null;
     }
 }
 
 
-/* ---------------------------------------------------------
-   COPY SHARE LINK
---------------------------------------------------------- */
+/* =========================================================
+   ADD SHARE BUTTON
+========================================================= */
 
-async function copyShareLink(data) {
+function addShareButton() {
 
-    const url =
-        await createShareLink(data);
-
-    if (!url) {
+    if (
+        document.getElementById(
+            "shareProgressButton"
+        )
+    ) {
         return;
     }
 
-    try {
+    const button =
+        document.createElement("button");
 
-        await navigator.clipboard.writeText(url);
+    button.id =
+        "shareProgressButton";
 
-        alert(
-            "🔗 Read-only progress link copied!"
-        );
+    button.type =
+        "button";
 
-        console.log(
-            "Share link:",
-            url
-        );
+    button.textContent =
+        "🔗 Share Progress";
 
-    } catch (error) {
+    button.style.cssText = `
+        display: block;
+        width: calc(100% - 32px);
+        max-width: 500px;
+        margin: 18px auto;
+        padding: 14px 18px;
+        border: 0;
+        border-radius: 14px;
+        background: #26352d;
+        color: white;
+        font-size: 15px;
+        font-weight: 600;
+        cursor: pointer;
+        box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+    `;
 
-        prompt(
-            "Copy your read-only progress link:",
-            url
-        );
+    button.addEventListener(
+        "click",
+        generateShareLink
+    );
+
+    const app =
+        document.querySelector(".app");
+
+    if (app) {
+
+        app.appendChild(button);
+
     }
+
 }
+
+
+/* =========================================================
+   HOOK INTO YOUR EXISTING saveData()
+========================================================= */
+
+function setupCloudSync() {
+
+    if (
+        typeof saveData !== "function"
+    ) {
+        console.warn(
+            "saveData() not found yet."
+        );
+
+        return;
+    }
+
+    const originalSaveData =
+        saveData;
+
+    window.saveData =
+        function () {
+
+            /*
+               First do exactly what your
+               existing app already does.
+            */
+
+            originalSaveData();
+
+            /*
+               Then quietly sync to Firebase
+               if the owner is logged in.
+            */
+
+            if (
+                typeof cloudAuth !== "undefined" &&
+                cloudAuth.currentUser
+            ) {
+
+                syncProgressToCloud(
+                    appData
+                );
+
+            }
+
+        };
+
+    addShareButton();
+
+    console.log(
+        "☁️ Live progress sharing enabled."
+    );
+}
+
+
+/* =========================================================
+   START
+========================================================= */
+
+window.addEventListener(
+    "load",
+    () => {
+
+        setTimeout(
+            setupCloudSync,
+            500
+        );
+
+    }
+);
