@@ -10,49 +10,7 @@ A simple, personal dashboard built to track my preparation, study sessions, task
 
 ### 👉 [OPEN NEET COMMAND CENTER](https://jayanpatel505.github.io/Neet-command-center/)
 
-> **Your journey. Your progress. One day at a time.**
-
----
-
-## 📚 What it does
-
-- 🎯 Daily study planning
-- ⚛️ Physics / Chemistry / Biology task tracking
-- ✅ Task completion tracking
-- ❓ Question tracking
-- ⏱️ Pomodoro timer
-- 🕐 Manual study timer
-- ⏱️ Stopwatch
-- 🔥 Study streak tracking
-- 📊 Progress analytics
-- 📈 Study-time history
-- 💾 Persistent local data
-- 📱 Mobile-first design
-- 🌐 GitHub Pages deployment
-- 📲 PWA support
-
----
-
-## 🎨 Design
-
-Built with a warm cream + dark green aesthetic, designed specifically for a simple and distraction-free study experience.
-
----
-
-## 🛠️ Built With
-
-- HTML
-- CSS
-- JavaScript
-- Local Storage
-- Firebase
-- GitHub Pages
-
-No frameworks.  
-No complicated setup.  
-Just a simple study command center.
-
----
+> **Your journey. Your progress. One day at a time.*
 
 ## 🧠 Why I Built This
 
