@@ -1,0 +1,11 @@
+{
+  "name": "NEET Command Center",
+  "short_name": "NEET",
+  "description": "Personal NEET preparation command center.",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#f4f1e8",
+  "theme_color": "#26352d",
+  "orientation": "portrait",
+  "icons": []
+}

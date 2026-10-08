@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="theme-color" content="#26352d">
+
+    <title>NEET Command Center</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <main class="app">
+
+        <!-- =====================================================
+             HEADER
+        ====================================================== -->
+
+        <header class="top-bar">
+
+            <div>
+                <p class="eyebrow">MY NEET JOURNEY</p>
+                <h1 id="greeting">Good morning.</h1>
+                <p class="current-date" id="currentDate">
+                    Loading date...
+                </p>
+            </div>
+
+            <div class="day-badge">
+                <span>DAY</span>
+                <strong id="journeyDay">01</strong>
+            </div>
+
+        </header>
+
+
+        <!-- =====================================================
+             GOAL CARD
+        ====================================================== -->
+
+        <section class="hero-card">
+
+            <p class="small-label">THE GOAL</p>
+
+            <h2>
+                One day<br>
+                at a time.
+            </h2>
+
+            <p class="hero-text">
+                Give it everything.
+            </p>
+
+            <div class="goal-meta">
+
+                <div>
+                    <span>NEET</span>
+                    <strong id="daysRemaining">--</strong>
+                    <small>days remaining</small>
+                </div>
+
+                <div>
+                    <span>STREAK</span>
+                    <strong id="heroStreak">0</strong>
+                    <small>days</small>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             QUICK STATS
+        ====================================================== -->
+
+        <section class="stats-grid">
+
+            <div class="stat-card">
+
+                <span class="stat-icon">🔥</span>
+
+                <strong id="dayStreak">0</strong>
+
+                <small>Day streak</small>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <span class="stat-icon">◷</span>
+
+                <strong id="studiedToday">0m</strong>
+
+                <small>Studied today</small>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <span class="stat-icon">✓</span>
+
+                <strong id="tasksDone">0</strong>
+
+                <small>Tasks done</small>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             TODAY OVERVIEW
+        ====================================================== -->
+
+        <section class="overview-card">
+
+            <div class="section-heading">
+
+                <div>
+                    <p class="small-label">TODAY</p>
+                    <h2>Overview</h2>
+                </div>
+
+                <span class="progress" id="planProgress">
+                    0%
+                </span>
+
+            </div>
+
+
+            <div class="overview-grid">
+
+                <div class="overview-stat">
+                    <strong id="overviewTasks">0</strong>
+                    <span>Tasks done</span>
+                </div>
+
+                <div class="overview-stat">
+                    <strong id="overviewQuestions">0</strong>
+                    <span>Questions</span>
+                </div>
+
+                <div class="overview-stat">
+                    <strong id="overviewTime">0m</strong>
+                    <span>Study time</span>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             STUDY PLAN
+        ====================================================== -->
+
+        <section class="study-card" id="studyPlanSection">
+
+            <div class="section-heading">
+
+                <div>
+                    <p class="small-label">TODAY</p>
+                    <h2>Study plan</h2>
+                </div>
+
+                <button
+                    class="add-task-button"
+                    id="addTaskButton"
+                    type="button">
+                    + Add task
+                </button>
+
+            </div>
+
+
+            <!-- PHYSICS -->
+
+            <div class="subject-section" data-subject="physics">
+
+                <div class="subject-header">
+
+                    <div class="subject-title">
+
+                        <span class="subject-dot physics-dot"></span>
+
+                        <div>
+                            <strong>Physics</strong>
+                            <small id="physicsSummary">
+                                0 tasks · 0 questions
+                            </small>
+                        </div>
+
+                    </div>
+
+                    <span
+                        class="subject-progress"
+                        id="physicsProgress">
+                        0 / 0
+                    </span>
+
+                </div>
+
+                <div
+                    class="task-list"
+                    id="physicsTasks">
+                </div>
+
+                <p
+                    class="empty-subject"
+                    id="physicsEmpty">
+                    No Physics tasks yet.
+                </p>
+
+            </div>
+
+
+            <!-- CHEMISTRY -->
+
+            <div class="subject-section" data-subject="chemistry">
+
+                <div class="subject-header">
+
+                    <div class="subject-title">
+
+                        <span class="subject-dot chemistry-dot"></span>
+
+                        <div>
+                            <strong>Chemistry</strong>
+                            <small id="chemistrySummary">
+                                0 tasks · 0 questions
+                            </small>
+                        </div>
+
+                    </div>
+
+                    <span
+                        class="subject-progress"
+                        id="chemistryProgress">
+                        0 / 0
+                    </span>
+
+                </div>
+
+                <div
+                    class="task-list"
+                    id="chemistryTasks">
+                </div>
+
+                <p
+                    class="empty-subject"
+                    id="chemistryEmpty">
+                    No Chemistry tasks yet.
+                </p>
+
+            </div>
+
+
+            <!-- BIOLOGY -->
+
+            <div class="subject-section" data-subject="biology">
+
+                <div class="subject-header">
+
+                    <div class="subject-title">
+
+                        <span class="subject-dot biology-dot"></span>
+
+                        <div>
+                            <strong>Biology</strong>
+                            <small id="biologySummary">
+                                0 tasks · 0 questions
+                            </small>
+                        </div>
+
+                    </div>
+
+                    <span
+                        class="subject-progress"
+                        id="biologyProgress">
+                        0 / 0
+                    </span>
+
+                </div>
+
+                <div
+                    class="task-list"
+                    id="biologyTasks">
+                </div>
+
+                <p
+                    class="empty-subject"
+                    id="biologyEmpty">
+                    No Biology tasks yet.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             TASK MODAL
+        ====================================================== -->
+
+        <div
+            class="modal-backdrop"
+            id="taskModal"
+            hidden>
+
+            <div
+                class="modal-card"
+                role="dialog"
+                aria-modal="true"
+                aria-labelledby="taskModalTitle">
+
+                <div class="modal-header">
+
+                    <div>
+                        <p class="small-label">STUDY PLAN</p>
+
+                        <h2 id="taskModalTitle">
+                            Add task
+                        </h2>
+                    </div>
+
+                    <button
+                        class="close-button"
+                        id="closeTaskModal"
+                        type="button"
+                        aria-label="Close">
+                        ×
+                    </button>
+
+                </div>
+
+
+                <label class="form-label" for="taskName">
+                    Task / chapter / topic
+                </label>
+
+                <input
+                    class="form-input"
+                    id="taskName"
+                    type="text"
+                    placeholder="e.g. Electrostatics NCERT"
+                    maxlength="120">
+
+
+                <label class="form-label" for="taskSubject">
+                    Subject
+                </label>
+
+                <select
+                    class="form-input"
+                    id="taskSubject">
+
+                    <option value="physics">
+                        Physics
+                    </option>
+
+                    <option value="chemistry">
+                        Chemistry
+                    </option>
+
+                    <option value="biology">
+                        Biology
+                    </option>
+
+                </select>
+
+
+                <label class="form-label" for="taskQuestions">
+                    Questions to solve
+                </label>
+
+                <input
+                    class="form-input"
+                    id="taskQuestions"
+                    type="number"
+                    min="0"
+                    max="99999"
+                    value="0"
+                    placeholder="0">
+
+
+                <div class="modal-actions">
+
+                    <button
+                        class="secondary-button"
+                        id="cancelTaskButton"
+                        type="button">
+                        Cancel
+                    </button>
+
+                    <button
+                        class="primary-button"
+                        id="saveTaskButton"
+                        type="button">
+                        Add task
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =====================================================
+             STUDY TIMER
+        ====================================================== -->
+
+        <section class="timer-card">
+
+            <div class="timer-header">
+
+                <div>
+                    <p class="small-label">STUDY SESSION</p>
+                    <h2>Focus time</h2>
+                </div>
+
+                <span
+                    class="timer-status"
+                    id="timerStatus">
+                    Ready
+                </span>
+
+            </div>
+
+
+            <!-- TIMER MODES -->
+
+            <div class="timer-modes">
+
+                <button
+                    class="mode-button active"
+                    data-mode="pomodoro"
+                    type="button">
+                    Pomodoro
+                </button>
+
+                <button
+                    class="mode-button"
+                    data-mode="manual"
+                    type="button">
+                    Manual
+                </button>
+
+                <button
+                    class="mode-button"
+                    data-mode="stopwatch"
+                    type="button">
+                    Stopwatch
+                </button>
+
+            </div>
+
+
+            <!-- POMODORO -->
+
+            <div
+                class="timer-options"
+                id="pomodoroOptions">
+
+                <button
+                    class="preset-button active"
+                    data-minutes="25"
+                    type="button">
+                    25 min
+                </button>
+
+                <button
+                    class="preset-button"
+                    data-minutes="50"
+                    type="button">
+                    50 min
+                </button>
+
+                <button
+                    class="preset-button"
+                    data-minutes="90"
+                    type="button">
+                    90 min
+                </button>
+
+            </div>
+
+
+            <!-- MANUAL -->
+
+            <div
+                class="manual-options"
+                id="manualOptions"
+                hidden>
+
+                <div class="time-input">
+
+                    <label for="manualHours">
+                        Hours
+                    </label>
+
+                    <input
+                        id="manualHours"
+                        type="number"
+                        min="0"
+                        max="23"
+                        value="1">
+
+                </div>
+
+
+                <div class="time-input">
+
+                    <label for="manualMinutes">
+                        Minutes
+                    </label>
+
+                    <input
+                        id="manualMinutes"
+                        type="number"
+                        min="0"
+                        max="59"
+                        value="0">
+
+                </div>
+
+            </div>
+
+
+            <!-- TIMER DISPLAY -->
+
+            <div
+                class="timer-display"
+                id="timerDisplay">
+                25:00
+            </div>
+
+
+            <!-- TIMER CONTROLS -->
+
+            <div class="timer-controls">
+
+                <button
+                    class="timer-main-button"
+                    id="timerMainButton"
+                    type="button">
+                    ▶ Start
+                </button>
+
+                <button
+                    class="timer-reset-button"
+                    id="timerResetButton"
+                    type="button">
+                    Reset
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             ANALYTICS
+        ====================================================== -->
+
+        <section class="analytics-card">
+
+            <div class="section-heading">
+
+                <div>
+                    <p class="small-label">PROGRESS</p>
+                    <h2>Analytics</h2>
+                </div>
+
+            </div>
+
+
+            <!-- GRAPH RANGE -->
+
+            <div class="analytics-range">
+
+                <button
+                    class="range-button active"
+                    data-range="day"
+                    type="button">
+                    Day
+                </button>
+
+                <button
+                    class="range-button"
+                    data-range="week"
+                    type="button">
+                    Week
+                </button>
+
+                <button
+                    class="range-button"
+                    data-range="month"
+                    type="button">
+                    Month
+                </button>
+
+            </div>
+
+
+            <!-- TASK GRAPH -->
+
+            <div class="graph-card">
+
+                <div class="graph-heading">
+
+                    <div>
+                        <strong>Tasks completed</strong>
+                        <small>Subject-wise progress</small>
+                    </div>
+
+                </div>
+
+                <div class="legend">
+
+                    <span>
+                        <i class="legend-dot physics-dot"></i>
+                        Physics
+                    </span>
+
+                    <span>
+                        <i class="legend-dot chemistry-dot"></i>
+                        Chemistry
+                    </span>
+
+                    <span>
+                        <i class="legend-dot biology-dot"></i>
+                        Biology
+                    </span>
+
+                </div>
+
+                <div class="chart-wrapper">
+                    <canvas id="tasksChart"></canvas>
+                </div>
+
+                <p
+                    class="chart-empty"
+                    id="tasksChartEmpty">
+                    Complete some tasks to see your progress.
+                </p>
+
+            </div>
+
+
+            <!-- STUDY TIME GRAPH -->
+
+            <div class="graph-card">
+
+                <div class="graph-heading">
+
+                    <div>
+                        <strong>Study time</strong>
+                        <small>Time studied over time</small>
+                    </div>
+
+                </div>
+
+                <div class="chart-wrapper">
+                    <canvas id="timeChart"></canvas>
+                </div>
+
+                <p
+                    class="chart-empty"
+                    id="timeChartEmpty">
+                    Study some time to build your graph.
+                </p>
+
+            </div>
+
+
+            <!-- QUESTIONS GRAPH -->
+
+            <div class="graph-card">
+
+                <div class="graph-heading">
+
+                    <div>
+                        <strong>Questions solved</strong>
+                        <small>Subject-wise practice</small>
+                    </div>
+
+                </div>
+
+                <div class="legend">
+
+                    <span>
+                        <i class="legend-dot physics-dot"></i>
+                        Physics
+                    </span>
+
+                    <span>
+                        <i class="legend-dot chemistry-dot"></i>
+                        Chemistry
+                    </span>
+
+                    <span>
+                        <i class="legend-dot biology-dot"></i>
+                        Biology
+                    </span>
+
+                </div>
+
+                <div class="chart-wrapper">
+                    <canvas id="questionsChart"></canvas>
+                </div>
+
+                <p
+                    class="chart-empty"
+                    id="questionsChartEmpty">
+                    Add questions to your tasks to see this graph.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             TOTALS
+        ====================================================== -->
+
+        <section class="totals-card">
+
+            <div class="section-heading">
+
+                <div>
+                    <p class="small-label">ALL TIME</p>
+                    <h2>Your numbers</h2>
+                </div>
+
+            </div>
+
+
+            <div class="totals-grid">
+
+                <div class="total-item">
+                    <strong id="totalStudyTime">0m</strong>
+                    <span>Total study time</span>
+                </div>
+
+                <div class="total-item">
+                    <strong id="totalTasks">0</strong>
+                    <span>Tasks completed</span>
+                </div>
+
+                <div class="total-item">
+                    <strong id="totalQuestions">0</strong>
+                    <span>Questions solved</span>
+                </div>
+
+                <div class="total-item">
+                    <strong id="bestStreak">0</strong>
+                    <span>Best streak</span>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             TODAY'S SESSIONS
+        ====================================================== -->
+
+        <section class="history-card">
+
+            <div class="section-heading">
+
+                <div>
+                    <p class="small-label">TODAY</p>
+                    <h2>Study sessions</h2>
+                </div>
+
+                <span
+                    class="history-total"
+                    id="sessionCount">
+                    0
+                </span>
+
+            </div>
+
+            <div
+                class="session-list"
+                id="sessionList">
+            </div>
+
+            <p
+                class="history-empty"
+                id="sessionEmpty">
+                No study sessions yet.
+            </p>
+
+        </section>
+
+
+        <!-- =====================================================
+             BOTTOM MESSAGE
+        ====================================================== -->
+
+        <p class="bottom-note">
+            Small progress is still progress.
+        </p>
+
+
+    </main>
+
+
+    <!-- =========================================================
+         JAVASCRIPT
+    ========================================================== -->
+<link rel="manifest" href="manifest.json">
+    <script src="app.js"></script>
+
+</body>
+
+</html>
