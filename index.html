@@ -435,8 +435,6 @@
             </div>
 
 
-            <!-- TIMER MODES -->
-
             <div class="timer-modes">
 
                 <button
@@ -462,8 +460,6 @@
 
             </div>
 
-
-            <!-- POMODORO -->
 
             <div
                 class="timer-options"
@@ -492,8 +488,6 @@
 
             </div>
 
-
-            <!-- MANUAL -->
 
             <div
                 class="manual-options"
@@ -534,16 +528,12 @@
             </div>
 
 
-            <!-- TIMER DISPLAY -->
-
             <div
                 class="timer-display"
                 id="timerDisplay">
                 25:00
             </div>
 
-
-            <!-- TIMER CONTROLS -->
 
             <div class="timer-controls">
 
@@ -582,8 +572,6 @@
             </div>
 
 
-            <!-- GRAPH RANGE -->
-
             <div class="analytics-range">
 
                 <button
@@ -609,8 +597,6 @@
 
             </div>
 
-
-            <!-- TASK GRAPH -->
 
             <div class="graph-card">
 
@@ -655,8 +641,6 @@
             </div>
 
 
-            <!-- STUDY TIME GRAPH -->
-
             <div class="graph-card">
 
                 <div class="graph-heading">
@@ -680,8 +664,6 @@
 
             </div>
 
-
-            <!-- QUESTIONS GRAPH -->
 
             <div class="graph-card">
 
@@ -821,30 +803,53 @@
     <!-- =========================================================
          JAVASCRIPT
     ========================================================== -->
-<link rel="manifest" href="manifest.json">
+
+    <link rel="manifest" href="manifest.json">
+
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
+
+    <!-- Your Firebase connection -->
+    <script src="firebase.js"></script>
+
+    <!-- Main app -->
     <script src="app.js"></script>
-<!-- Personal Journey Footer -->
-<section class="personal-footer">
-    <div class="personal-line"></div>
 
-    <p class="personal-kicker">a little corner of the journey</p>
 
-    <img
-        src="./jayan-photo.jpg"
-        alt="A quiet moment"
-        class="personal-photo"
-    >
+    <!-- Personal Journey Footer -->
 
-    <p class="personal-name">Jayan</p>
+    <section class="personal-footer">
 
-    <p class="personal-note">
-        Just showing up, one day at a time.
-    </p>
+        <div class="personal-line"></div>
 
-    <p class="personal-goal">NEET • 2027</p>
+        <p class="personal-kicker">
+            a little corner of the journey
+        </p>
 
-    <div class="personal-line"></div>
-</section>
+        <img
+            src="./jayan-photo.jpg"
+            alt="A quiet moment"
+            class="personal-photo"
+        >
+
+        <p class="personal-name">
+            Jayan
+        </p>
+
+        <p class="personal-note">
+            Just showing up, one day at a time.
+        </p>
+
+        <p class="personal-goal">
+            NEET • 2027
+        </p>
+
+        <div class="personal-line"></div>
+
+    </section>
+
 </body>
 
 </html>
