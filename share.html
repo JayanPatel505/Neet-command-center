@@ -1,0 +1,1198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="theme-color"
+        content="#26352d">
+
+    <title>NEET Progress</title>
+
+</head>
+
+
+<body>
+
+<main class="page">
+
+    <header class="header">
+
+        <div>
+
+            <p class="eyebrow">
+                NEET COMMAND CENTER
+            </p>
+
+            <h1>
+                Live progress.
+            </h1>
+
+            <p
+                class="date"
+                id="updatedText">
+                Connecting...
+            </p>
+
+        </div>
+
+        <div class="live">
+            <span></span>
+            LIVE
+        </div>
+
+    </header>
+
+
+    <section class="hero">
+
+        <p class="label">
+            THE JOURNEY
+        </p>
+
+        <h2>
+            One day<br>
+            at a time.
+        </h2>
+
+        <p id="ownerName">
+            NEET aspirant
+        </p>
+
+        <div class="heroStats">
+
+            <div>
+                <span>DAY</span>
+                <strong id="journeyDay">
+                    —
+                </strong>
+            </div>
+
+            <div>
+                <span>NEET</span>
+                <strong id="daysRemaining">
+                    —
+                </strong>
+            </div>
+
+            <div>
+                <span>STREAK</span>
+                <strong id="streak">
+                    —
+                </strong>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <section class="stats">
+
+        <div class="card">
+
+            <span class="icon">
+                🔥
+            </span>
+
+            <strong id="todayStudy">
+                —
+            </strong>
+
+            <small>
+                Studied today
+            </small>
+
+        </div>
+
+
+        <div class="card">
+
+            <span class="icon">
+                ✓
+            </span>
+
+            <strong id="todayTasks">
+                —
+            </strong>
+
+            <small>
+                Tasks done
+            </small>
+
+        </div>
+
+
+        <div class="card">
+
+            <span class="icon">
+                ?
+            </span>
+
+            <strong id="todayQuestions">
+                —
+            </strong>
+
+            <small>
+                Questions
+            </small>
+
+        </div>
+
+    </section>
+
+
+    <section class="section">
+
+        <div class="sectionTitle">
+
+            <div>
+
+                <p class="label">
+                    TODAY
+                </p>
+
+                <h2>
+                    Study plan
+                </h2>
+
+            </div>
+
+        </div>
+
+
+        <div id="tasks">
+
+            <p class="empty">
+                Loading progress...
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <section class="section">
+
+        <div class="sectionTitle">
+
+            <div>
+
+                <p class="label">
+                    ALL TIME
+                </p>
+
+                <h2>
+                    Your numbers
+                </h2>
+
+            </div>
+
+        </div>
+
+
+        <div class="totals">
+
+            <div>
+                <strong id="totalStudy">
+                    —
+                </strong>
+                <span>
+                    Study time
+                </span>
+            </div>
+
+            <div>
+                <strong id="totalTasks">
+                    —
+                </strong>
+                <span>
+                    Tasks completed
+                </span>
+            </div>
+
+            <div>
+                <strong id="totalQuestions">
+                    —
+                </strong>
+                <span>
+                    Questions
+                </span>
+            </div>
+
+            <div>
+                <strong id="bestStreak">
+                    —
+                </strong>
+                <span>
+                    Best streak
+                </span>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <p class="footer">
+        Progress updates automatically.
+    </p>
+
+</main>
+
+
+<style>
+
+:root {
+
+    --background: #f4f1e8;
+
+    --card: #fffdf7;
+
+    --green: #26352d;
+
+    --green-soft: #dfe8dc;
+
+    --text: #26352d;
+
+    --muted: #788078;
+
+    --line:
+        rgba(38,53,45,0.09);
+
+    --physics: #6f94b0;
+
+    --chemistry: #b79568;
+
+    --biology: #789873;
+
+}
+
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+
+body {
+
+    min-height: 100vh;
+
+    background:
+        var(--background);
+
+    color:
+        var(--text);
+
+    font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        Arial,
+        sans-serif;
+
+}
+
+
+.page {
+
+    width:
+        min(100%, 520px);
+
+    margin:
+        auto;
+
+    padding:
+        28px 18px 50px;
+
+}
+
+
+.header {
+
+    display: flex;
+
+    justify-content:
+        space-between;
+
+    gap: 15px;
+
+    margin-bottom: 20px;
+
+}
+
+
+.eyebrow {
+
+    font-size: 9px;
+
+    font-weight: 800;
+
+    letter-spacing: 0.18em;
+
+    color: var(--muted);
+
+    margin-bottom: 7px;
+
+}
+
+
+h1 {
+
+    font-size: 29px;
+
+    line-height: 1;
+
+    letter-spacing: -0.045em;
+
+}
+
+
+.date {
+
+    margin-top: 7px;
+
+    font-size: 11px;
+
+    color: var(--muted);
+
+}
+
+
+.live {
+
+    align-self: flex-start;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 6px;
+
+    padding: 7px 9px;
+
+    border-radius: 20px;
+
+    background: var(--green-soft);
+
+    color: var(--green);
+
+    font-size: 8px;
+
+    font-weight: 800;
+
+    letter-spacing: 0.1em;
+
+}
+
+
+.live span {
+
+    width: 6px;
+
+    height: 6px;
+
+    border-radius: 50%;
+
+    background: var(--biology);
+
+}
+
+
+.hero {
+
+    padding: 28px;
+
+    border-radius: 24px;
+
+    background: var(--green);
+
+    color: white;
+
+    margin-bottom: 14px;
+
+}
+
+
+.label {
+
+    font-size: 8px;
+
+    font-weight: 800;
+
+    letter-spacing: 0.16em;
+
+    color: var(--muted);
+
+}
+
+
+.hero .label {
+
+    color:
+        rgba(255,255,255,0.5);
+
+}
+
+
+.hero h2 {
+
+    margin-top: 8px;
+
+    font-size: 35px;
+
+    line-height: 1;
+
+    letter-spacing: -0.05em;
+
+}
+
+
+.hero > p:last-of-type {
+
+    margin-top: 11px;
+
+    color:
+        rgba(255,255,255,0.65);
+
+    font-size: 12px;
+
+}
+
+
+.heroStats {
+
+    display: flex;
+
+    gap: 30px;
+
+    margin-top: 25px;
+
+}
+
+
+.heroStats div {
+
+    display: flex;
+
+    flex-direction: column;
+
+}
+
+
+.heroStats span {
+
+    font-size: 7px;
+
+    font-weight: 800;
+
+    letter-spacing: 0.14em;
+
+    opacity: 0.45;
+
+}
+
+
+.heroStats strong {
+
+    margin-top: 3px;
+
+    font-size: 21px;
+
+}
+
+
+.stats {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap: 9px;
+
+    margin-bottom: 14px;
+
+}
+
+
+.card {
+
+    min-height: 105px;
+
+    padding: 14px;
+
+    border-radius: 18px;
+
+    background: var(--card);
+
+    border: 1px solid var(--line);
+
+}
+
+
+.icon {
+
+    display: block;
+
+    margin-bottom: 17px;
+
+    font-size: 15px;
+
+}
+
+
+.card strong {
+
+    display: block;
+
+    font-size: 20px;
+
+    letter-spacing: -0.04em;
+
+}
+
+
+.card small {
+
+    display: block;
+
+    margin-top: 3px;
+
+    color: var(--muted);
+
+    font-size: 9px;
+
+}
+
+
+.section {
+
+    margin-bottom: 14px;
+
+    padding: 21px;
+
+    border-radius: 24px;
+
+    background: var(--card);
+
+    border: 1px solid var(--line);
+
+}
+
+
+.sectionTitle {
+
+    margin-bottom: 17px;
+
+}
+
+
+.sectionTitle h2 {
+
+    margin-top: 4px;
+
+    font-size: 20px;
+
+    letter-spacing: -0.035em;
+
+}
+
+
+.task {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    padding: 11px;
+
+    margin-bottom: 7px;
+
+    border-radius: 12px;
+
+    background:
+        rgba(38,53,45,0.035);
+
+}
+
+
+.check {
+
+    width: 23px;
+
+    height: 23px;
+
+    flex-shrink: 0;
+
+    border-radius: 50%;
+
+    border: 1px solid
+        rgba(38,53,45,0.16);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 11px;
+
+}
+
+
+.task.done .check {
+
+    background: var(--green);
+
+    color: white;
+
+    border-color: var(--green);
+
+}
+
+
+.taskInfo {
+
+    min-width: 0;
+
+    flex: 1;
+
+}
+
+
+.taskName {
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
+    white-space: nowrap;
+
+}
+
+
+.task.done .taskName {
+
+    text-decoration: line-through;
+
+    opacity: 0.55;
+
+}
+
+
+.taskMeta {
+
+    margin-top: 3px;
+
+    font-size: 8px;
+
+    color: var(--muted);
+
+}
+
+
+.empty {
+
+    padding: 12px 0;
+
+    text-align: center;
+
+    color: var(--muted);
+
+    font-size: 10px;
+
+}
+
+
+.totals {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2,1fr);
+
+    gap: 8px;
+
+}
+
+
+.totals div {
+
+    padding: 14px;
+
+    border-radius: 14px;
+
+    background:
+        rgba(38,53,45,0.035);
+
+}
+
+
+.totals strong {
+
+    display: block;
+
+    font-size: 19px;
+
+}
+
+
+.totals span {
+
+    display: block;
+
+    margin-top: 4px;
+
+    font-size: 8px;
+
+    color: var(--muted);
+
+}
+
+
+.footer {
+
+    text-align: center;
+
+    padding: 12px;
+
+    color: var(--muted);
+
+    font-size: 9px;
+
+}
+
+
+@media(max-width:350px) {
+
+    .page {
+        padding-left: 13px;
+        padding-right: 13px;
+    }
+
+    .hero {
+        padding: 23px;
+    }
+
+    .hero h2 {
+        font-size: 30px;
+    }
+
+}
+
+</style>
+
+
+<script src="https://www.gstatic.com/firebasejs/12.19.0/firebase-app-compat.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/12.19.0/firebase-database-compat.js"></script>
+
+
+<script>
+
+const firebaseConfig = {
+
+    apiKey:
+        "AIzaSyDnTEz6poGbiNetEm-Ug038mldh40gg7nY",
+
+    authDomain:
+        "neet-command-center.firebaseapp.com",
+
+    databaseURL:
+        "https://neet-command-center-default-rtdb.asia-southeast1.firebasedatabase.app",
+
+    projectId:
+        "neet-command-center",
+
+    storageBucket:
+        "neet-command-center.firebasestorage.app",
+
+    messagingSenderId:
+        "605033347371",
+
+    appId:
+        "1:605033347371:web:ef760a55c53a3ff56c6d6e"
+
+};
+
+
+firebase.initializeApp(
+    firebaseConfig
+);
+
+
+const database =
+    firebase.database();
+
+
+const params =
+    new URLSearchParams(
+        window.location.search
+    );
+
+
+const shareId =
+    params.get("id");
+
+
+const progressRef =
+    database.ref(
+        "publicProgress/" +
+        shareId
+    );
+
+
+function formatTime(seconds) {
+
+    seconds =
+        Number(seconds || 0);
+
+    const hours =
+        Math.floor(
+            seconds / 3600
+        );
+
+    const minutes =
+        Math.floor(
+            (seconds % 3600) / 60
+        );
+
+    if (hours > 0) {
+
+        return (
+            hours +
+            "h " +
+            minutes +
+            "m"
+        );
+
+    }
+
+    return minutes + "m";
+
+}
+
+
+function formatUpdated(timestamp) {
+
+    if (!timestamp) {
+        return "Waiting for first update...";
+    }
+
+    const date =
+        new Date(timestamp);
+
+    return (
+        "Updated " +
+        date.toLocaleTimeString(
+            [],
+            {
+                hour: "numeric",
+                minute: "2-digit"
+            }
+        )
+    );
+
+}
+
+
+function renderProgress(data) {
+
+    if (!data) {
+
+        document.body.innerHTML = `
+
+            <main style="
+                min-height:100vh;
+                display:flex;
+                align-items:center;
+                justify-content:center;
+                padding:30px;
+                text-align:center;
+                font-family:system-ui;
+                background:#f4f1e8;
+                color:#26352d;
+            ">
+
+                <div>
+
+                    <h1>
+                        Progress link not found.
+                    </h1>
+
+                    <p style="
+                        margin-top:10px;
+                        opacity:.6;
+                    ">
+                        The shared progress may not
+                        exist anymore.
+                    </p>
+
+                </div>
+
+            </main>
+
+        `;
+
+        return;
+
+    }
+
+
+    document.getElementById(
+        "ownerName"
+    ).textContent =
+        data.ownerName ||
+        "NEET Aspirant";
+
+
+    document.getElementById(
+        "journeyDay"
+    ).textContent =
+        data.journeyDay || "—";
+
+
+    document.getElementById(
+        "daysRemaining"
+    ).textContent =
+        data.daysRemaining ?? "—";
+
+
+    document.getElementById(
+        "streak"
+    ).textContent =
+        data.streak || 0;
+
+
+    document.getElementById(
+        "todayStudy"
+    ).textContent =
+        formatTime(
+            data.today?.studySeconds
+        );
+
+
+    document.getElementById(
+        "todayTasks"
+    ).textContent =
+        data.today?.tasksDone || 0;
+
+
+    document.getElementById(
+        "todayQuestions"
+    ).textContent =
+        data.today?.questions || 0;
+
+
+    document.getElementById(
+        "totalStudy"
+    ).textContent =
+        formatTime(
+            data.totalStudySeconds
+        );
+
+
+    document.getElementById(
+        "totalTasks"
+    ).textContent =
+        (
+            data.tasks || []
+        ).filter(
+            task => task.completed
+        ).length;
+
+
+    document.getElementById(
+        "totalQuestions"
+    ).textContent =
+        (
+            data.tasks || []
+        ).reduce(
+            (sum, task) =>
+                sum +
+                Number(
+                    task.questions || 0
+                ),
+            0
+        );
+
+
+    document.getElementById(
+        "bestStreak"
+    ).textContent =
+        data.bestStreak || 0;
+
+
+    document.getElementById(
+        "updatedText"
+    ).textContent =
+        formatUpdated(
+            data.updatedAt
+        );
+
+
+    const taskContainer =
+        document.getElementById(
+            "tasks"
+        );
+
+
+    const tasks =
+        Array.isArray(data.tasks)
+            ? data.tasks
+            : [];
+
+
+    if (!tasks.length) {
+
+        taskContainer.innerHTML = `
+
+            <p class="empty">
+                No study tasks yet.
+            </p>
+
+        `;
+
+        return;
+
+    }
+
+
+    taskContainer.innerHTML =
+        tasks.map(task => {
+
+            const subject =
+                String(
+                    task.subject ||
+                    ""
+                );
+
+
+            const subjectName =
+                subject.charAt(0)
+                    .toUpperCase() +
+                subject.slice(1);
+
+
+            return `
+
+                <div class="
+                    task
+                    ${task.completed ? "done" : ""}
+                ">
+
+                    <div class="check">
+
+                        ${
+                            task.completed
+                                ? "✓"
+                                : ""
+                        }
+
+                    </div>
+
+                    <div class="taskInfo">
+
+                        <div class="taskName">
+
+                            ${escapeHtml(
+                                task.name
+                            )}
+
+                        </div>
+
+                        <div class="taskMeta">
+
+                            ${subjectName}
+
+                            ·
+
+                            ${
+                                Number(
+                                    task.questions || 0
+                                )
+                            }
+
+                            questions
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            `;
+
+        }).join("");
+
+}
+
+
+function escapeHtml(value) {
+
+    return String(value)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+
+}
+
+
+if (!shareId) {
+
+    document.getElementById(
+        "updatedText"
+    ).textContent =
+        "No share ID provided.";
+
+} else {
+
+    progressRef.on(
+        "value",
+        snapshot => {
+
+            renderProgress(
+                snapshot.val()
+            );
+
+        },
+        error => {
+
+            console.error(
+                "Could not load shared progress:",
+                error
+            );
+
+            document.getElementById(
+                "updatedText"
+            ).textContent =
+                "Unable to load progress.";
+
+        }
+    );
+
+}
+
+</script>
+
+</body>
+
+</html>
